@@ -1,0 +1,9 @@
+---
+- name: Loki | setup dependencies
+  include: dependencies.yml
+
+- name: Loki | setup docker
+  include: docker.yml
+
+- name: Loki | start Loki
+  include: start.yml

@@ -1,0 +1,16 @@
+---
+- name: server | check docker swarm state
+  command: docker node ls
+  register: ret_docker_node
+  changed_when: false
+  failed_when: false
+  when: loki_docker_swarm_init
+
+- name: server | force enable docker swarm
+  shell: >
+    docker swarm init
+  when: >
+    (ret_docker_node.stderr is defined and
+    ret_docker_node.stderr != "") and
+    loki_docker_swarm_init
+

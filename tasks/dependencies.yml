@@ -1,0 +1,15 @@
+---
+- name: Loki | ensure user exists
+  user:
+    name: "{{ loki_user }}"
+
+- name: Loki | ensure group exists
+  user:
+    name: "{{ loki_group }}"
+
+- name: Loki | create directories
+  file:
+    state: directory
+    path: "{{ loki_path }}"
+    owner: "{{ loki_user }}"
+    group: "{{ loki_group }}"

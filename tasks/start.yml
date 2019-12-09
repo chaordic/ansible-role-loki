@@ -1,0 +1,21 @@
+---
+- name: Loki | copy config
+  template:
+    src: loki.yml.j2
+    dest: "{{loki_path}}/loki.yml"
+    owner: "{{loki_user}}"
+    group: "{{loki_group}}"
+  tags: deploy
+
+- name: Loki | copy docker-compose
+  template:
+    src: docker-compose-loki.yml.j2
+    dest: "{{loki_path}}/docker-compose-loki.yml"
+    owner: "{{loki_user}}"
+    group: "{{loki_group}}"
+  tags: deploy
+
+- name: Loki | deploy container
+  shell: >
+    docker stack deploy -c {{loki_path}}/docker-compose-loki.yml loki;
+  tags: deploy

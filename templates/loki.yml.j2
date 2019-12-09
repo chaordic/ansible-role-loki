@@ -1,0 +1,39 @@
+target: {{loki_target}}
+
+auth_enabled: {{loki_auth_enabled}}
+
+server:
+  http_listen_port: {{loki_listen_port}}
+
+ingester:
+  lifecycler:
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+  chunk_idle_period: {{loki_ingester_chunk_idle_period}}
+
+
+limits_config:
+  enforce_metric_name: {{loki_enforce_metric_name}}
+  reject_old_samples: true
+  reject_old_samples_max_age: 1h
+
+table_manager:
+  retention_period: {{loki_table_manager_retention_period}}
+  retention_deletes_enabled: {{loki_table_manager_retention_deletes}}
+
+schema_config:
+  configs:
+    - store: aws
+      from: "{{loki_from_date}}"
+      object_store: s3
+      schema: {{loki_schema_version}}
+      index:
+        prefix: {{loki_index_prefix}}
+        period: {{loki_index_period}}
+storage_config:
+  aws:
+    s3: s3://{{loki_s3_region}}/{{loki_s3_bucket}}
+    dynamodbconfig:
+      dynamodb: dynamodb://{{loki_dynamodb_region}}

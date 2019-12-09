@@ -1,0 +1,25 @@
+---
+loki_docker_swarm_init: 'true'
+
+loki_version: v1.2.0
+
+loki_path: /opt/loki
+loki_user: loki
+loki_group: loki
+
+loki_from_date: 2019-12-01
+loki_target: all
+loki_auth_enabled: false
+loki_listen_port: 9090
+loki_enforce_metric_name: false
+loki_schema_version: v10
+
+loki_index_prefix: loki_
+loki_index_period: 180h
+loki_s3_bucket: reengage-loki
+loki_s3_region: us-east-1
+loki_dynamodb_region: us-east-1
+
+loki_ingester_chunk_idle_period: 15m
+loki_table_manager_retention_period: 720h
+loki_table_manager_retention_deletes: true
