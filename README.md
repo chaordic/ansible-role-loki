@@ -25,6 +25,7 @@ Loki differs from Prometheus by focussing on logs instead of metrics, and delive
 The following variables are available to use, detailed description available [here](https://github.com/grafana/loki/tree/master/docs/configuration):
 
 | Variable   	                            | Description                                       | Default Value |
+|-------------------------------------------|---------------------------------------------------|---------------|
 | loki\_version                             | What Loki version to use                          | v1.2.0        |
 | loki\_path                                | Where to store Loki files                         | /opt/loki     |
 | loki\_user                                | Run Loki with this user                           | loki          |
